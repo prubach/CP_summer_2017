@@ -13,7 +13,5 @@ public class Bowls {
             //sum += i;
         }
         System.out.println(sum);
-
-
     }
 }
