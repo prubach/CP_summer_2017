@@ -5,8 +5,15 @@ package obj;
  */
 public class Rectangle {
 
-    double sideA;
-    double sideB;
+    private double sideA;
+    private double sideB;
+
+    //public Rectangle() {
+    //}
+
+    public Rectangle(double sideA, double sideB) {
+        setParams(sideA, sideB);
+    }
 
     public void setParams(double sideA, double sideB) {
         this.sideA = sideA;
