@@ -13,10 +13,18 @@ public class PlayWithShapesAdv {
         shapes[1] = new Circle(3);
         shapes[2] = new Square(2);
 
-        Rectangle rect = (Rectangle) shapes[0];
+        //Rectangle rect = (Rectangle) shapes[2];
         Circle circle = (Circle) shapes[1];
 
-        int comparison = rect.compareTo(circle);
+        Shape sh1 = shapes[2];
+        Shape sh2 = shapes[1];
+
+        //shapes[1]
+        //sh2.
+        //circle.
+
+        int comparison = sh1.compareTo(sh2);
+        //int comparison = rect.compareTo(circle);
 
         System.out.println("compar: " + comparison);
 
