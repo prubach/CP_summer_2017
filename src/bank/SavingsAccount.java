@@ -5,7 +5,7 @@ package bank;
  */
 public class SavingsAccount extends Account {
 
-    public SavingsAccount(Long accountId, Customer customer) {
-        super(accountId, customer);
+    public SavingsAccount(Long accountId, Customer customer, String currency) {
+        super(accountId, customer, currency);
     }
 }

@@ -1,0 +1,7 @@
+Please write a program that opens a text file
+containing some text (for example a newspaper
+article - only text). The program should list
+all the words used in this text and count how
+many times every one of those words appears in
+this text file.
+Hint: you may use the Map structure.

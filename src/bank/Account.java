@@ -10,11 +10,13 @@ public abstract class Account {
     private Long accountId;
     private Customer customer;
     private BigDecimal balance;
+    private String currency;
 
-    public Account(Long accountId, Customer customer) {
+    public Account(Long accountId, Customer customer, String currency) {
         this.accountId = accountId;
         this.customer = customer;
         this.balance = new BigDecimal(0);
+        this.currency = currency;
     }
 
     public Long getAccountId() {
@@ -41,12 +43,21 @@ public abstract class Account {
         this.balance = balance;
     }
 
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
     @Override
     public String toString() {
-        return "Account{" +
-                "accountId=" + accountId +
-                ", customer=" + customer +
-                ", balance=" + balance +
+        return "\n" + this.getClass().getSimpleName()
+                .replace("Account", "") + "{" +
+                "id=" + accountId +
+                ", cust=" + customer.getCustomerId() +
+                ", " + currency + " " + balance +
                 '}';
     }
 }
