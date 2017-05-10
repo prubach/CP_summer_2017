@@ -1,6 +1,7 @@
 package bank;
 
 import bank.exceptions.IllegalAmountException;
+import bank.exceptions.NotEnoughMoneyException;
 
 import java.math.BigDecimal;
 
@@ -21,14 +22,22 @@ public abstract class Account {
         this.currency = currency;
     }
 
-    public void charge(BigDecimal amount) {
+    public void charge(BigDecimal amount)
+            throws NotEnoughMoneyException,
+            IllegalAmountException {
         if (amount.compareTo(new BigDecimal(0)) <= 0)
-            return;
-        if (getBalance().compareTo(amount) < 0) return;
+            throw new IllegalAmountException(
+                    "Tried to deposit an illegal amount: "
+                            + amount);
+        if (getBalance().compareTo(amount) < 0)
+            throw new NotEnoughMoneyException(
+                    "Not enough money to charge: "
+                            + amount);
         setBalance(getBalance().subtract(amount));
     }
 
-    public void charge(Double dAmount) {
+    public void charge(Double dAmount)
+            throws IllegalAmountException, NotEnoughMoneyException {
         charge(new BigDecimal(dAmount));
     }
 

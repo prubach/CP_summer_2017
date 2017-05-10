@@ -40,6 +40,18 @@ public class Bank {
         return acc;
     }
 
+    public void transfer(Long accIdFrom,
+                         Long accIdTo, Double amount) {
+
+        //TODO
+    }
+
+    private Account findAccountById(Long accId) {
+        //TODO
+        return null;
+    }
+
+
     @Override
     public String toString() {
         return "Bank{\n" +

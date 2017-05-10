@@ -1,6 +1,8 @@
 package bank;
 
+import bank.exceptions.BankException;
 import bank.exceptions.IllegalAmountException;
+import bank.exceptions.NotEnoughMoneyException;
 
 /**
  * Created by prubac on 4/19/2017.
@@ -26,12 +28,20 @@ public class PlayWithBank {
                 .createAccount(cust2, true, "PLN");
         System.out.println(bank);
         try {
-            acc1.deposit(-100d);
+            Account acc = null;
+            acc.deposit(20d);
+            acc1.deposit(100d);
             acc2.deposit(200d);
             acc2.charge(250d);
-        } catch (IllegalAmountException ne) {
+
+            // } catch (IllegalAmountException | NotEnoughMoneyException ne) {
+            //} catch (IllegalAmountException ne) {
+        } catch (BankException ne) {
             System.out.println("Something went wrong: "
                     + ne.getMessage());
+        /*} catch (NotEnoughMoneyException ne) {
+            System.out.println("Something went wrong: "
+                    + ne.getMessage());*/
         }
         System.out.println(bank);
 
