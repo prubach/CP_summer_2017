@@ -18,10 +18,15 @@ public class PlayWithBank {
                 .createCustomer("John", "Smith");
         Customer cust2 = bank
                 .createCustomer("Anne", "Brown");
+
+        cust1.setFirstName("Jack");
+        System.out.println(cust1);
         Account acc1 = bank
                 .createAccount(cust1, false, "USD");
+        //acc1.getCustomer().setFirstName("Ronald");
         Account acc2 = bank
                 .createAccount(cust1, true, "PLN");
+        acc2.getCustomer().setFirstName("Ronald");
         Account acc3 = bank
                 .createAccount(cust2, false, "USD");
         Account acc4 = bank
