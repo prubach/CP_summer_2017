@@ -33,11 +33,16 @@ public class PlayWithBank {
                 .createAccount(cust2, true, "PLN");
         System.out.println(bank);
         try {
-            Account acc = null;
-            acc.deposit(20d);
+            /*Account acc = null;
+            acc.deposit(20d);*/
             acc1.deposit(100d);
             acc2.deposit(200d);
-            acc2.charge(250d);
+            //acc2.charge(250d);
+            System.out.println(bank);
+
+            // bank.transfer(1L,3L,120d);
+            bank.transfer(1L, 3L, 100d);
+
 
             // } catch (IllegalAmountException | NotEnoughMoneyException ne) {
             //} catch (IllegalAmountException ne) {

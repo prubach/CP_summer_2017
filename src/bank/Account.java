@@ -27,7 +27,7 @@ public abstract class Account {
             IllegalAmountException {
         if (amount.compareTo(new BigDecimal(0)) <= 0)
             throw new IllegalAmountException(
-                    "Tried to deposit an illegal amount: "
+                    "Tried to charge an illegal amount: "
                             + amount);
         if (getBalance().compareTo(amount) < 0)
             throw new NotEnoughMoneyException(
