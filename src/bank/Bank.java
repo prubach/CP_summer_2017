@@ -65,6 +65,23 @@ public class Bank {
                 " not found!");
     }
 
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public List<Account> getAccountListForCustomer(Customer customer) {
+        List<Account> custAccounts = new ArrayList<>();
+        for (Account acc : accountList) {
+            if (acc.getCustomer().equals(customer))
+                custAccounts.add(acc);
+        }
+        return custAccounts;
+    }
+
 
     @Override
     public String toString() {
