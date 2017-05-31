@@ -69,4 +69,20 @@ public class AccountsTableDataModel extends DefaultTableModel {
         }
     }
 
+    @Override
+    public void setValueAt(Object newVal, int row, int column) {
+        Account account = (Account) dataVector.get(row);
+        switch (column) {
+            case 0:
+                return;
+            case 1:
+                return;
+            case 2:
+                account.setCurrency((String) newVal);
+                return;
+            case 3:
+                account.setBalance((BigDecimal) newVal);
+        }
+
+    }
 }

@@ -76,7 +76,8 @@ public abstract class Account {
         return balance;
     }
 
-    private void setBalance(BigDecimal balance) {
+    // TODO: Previousy disabled.
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
