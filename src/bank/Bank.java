@@ -82,6 +82,15 @@ public class Bank {
         return custAccounts;
     }
 
+    public Customer getCustomerById(Long custId) {
+        Customer customer = null;
+        for (Customer cust : getCustomerList()) {
+            if (cust.getCustomerId().equals(custId))
+                return cust;
+        }
+        return null;
+    }
+
 
     @Override
     public String toString() {

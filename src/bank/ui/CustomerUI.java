@@ -68,6 +68,20 @@ public class CustomerUI {
                 }
             }
         });
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (idTextField.getText() != null) {
+                    Long custId = Long.valueOf(idTextField.getText());
+                    Customer customer = bank.getCustomerById(custId);
+
+                    if (customer != null) {
+                        customer.setFirstName(firstNameTextField.getText());
+                        customer.setLastName(lastNameTextField.getText());
+                    }
+                }
+            }
+        });
 
 
     }
