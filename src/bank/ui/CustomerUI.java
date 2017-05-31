@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
@@ -31,6 +33,8 @@ public class CustomerUI {
     private AccountsTableDataModel accountsTableDataModel;
     private Customer curCustomer;
 
+    private JPopupMenu contextMenu = new JPopupMenu("Operations on Account");
+
 
     public CustomerUI() {
 
@@ -41,6 +45,7 @@ public class CustomerUI {
                 Customer newCust = bank.createCustomer(firstNameTextField.getText(), lastNameTextField.getText());
                 curCustomer = newCust;
                 Account newAcc = bank.createAccount(newCust, false, "USD");
+                accountsTableDataModel.removeAllRows();
                 accountsTableDataModel.addRow(newAcc);
                 idTextField.setText(newCust.getCustomerId().toString());
                 System.out.println(bank);
@@ -115,6 +120,72 @@ public class CustomerUI {
         //       bank.createAccount(c, false, "USD");
         accountsTableDataModel = new AccountsTableDataModel(bank.getAccountList());
         accountTable = new JTable(accountsTableDataModel);
+
+        JMenuItem newDebitAccount = new JMenuItem("New Debit Account");
+        newDebitAccount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (idTextField.getText() != null) {
+                    Long custId = Long.valueOf(idTextField.getText());
+                    Customer customer = bank.getCustomerById(custId);
+
+                    if (customer != null) {
+                        Account newAcc = bank.createAccount(customer, false,
+                                "USD");
+                        accountsTableDataModel.addRow(newAcc);
+                    }
+                }
+            }
+        });
+        JMenuItem newSavingsAccount = new JMenuItem("New Savings Account");
+        newSavingsAccount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (idTextField.getText() != null) {
+                    Long custId = Long.valueOf(idTextField.getText());
+                    Customer customer = bank.getCustomerById(custId);
+
+                    if (customer != null) {
+                        Account newAcc = bank.createAccount(customer, true,
+                                "USD");
+                        accountsTableDataModel.addRow(newAcc);
+                    }
+                }
+            }
+        });
+        contextMenu.add(newDebitAccount);
+        contextMenu.add(newSavingsAccount);
+        accountTable.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+                if (mouseEvent.isPopupTrigger()) {
+                    contextMenu.show(mouseEvent.getComponent(),
+                            mouseEvent.getX(), mouseEvent.getY());
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
+        });
+
+
     }
 
     /**
