@@ -120,7 +120,7 @@ public class CustomerUI {
         //       bank.createAccount(c, false, "USD");
         accountsTableDataModel = new AccountsTableDataModel(bank.getAccountList());
         accountTable = new JTable(accountsTableDataModel);
-
+        accountTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JMenuItem newDebitAccount = new JMenuItem("New Debit Account");
         newDebitAccount.addActionListener(new ActionListener() {
             @Override
@@ -153,8 +153,29 @@ public class CustomerUI {
                 }
             }
         });
+        JMenuItem deleteAccount = new JMenuItem("Delete Account");
+        deleteAccount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("Selected: "
+                        + accountTable.getSelectedRowCount());
+                if (accountTable.getSelectedRowCount() > 0) {
+                    int[] selectedRows = accountTable.getSelectedRows();
+                    for (int rowNum : selectedRows) {
+                        Account accToDelete = (Account) accountsTableDataModel
+                                .getDataVector()
+                                .get(rowNum);
+                        bank.deleteAccount(accToDelete);
+                        accountsTableDataModel.removeRow(rowNum);
+                    }
+
+                }
+
+            }
+        });
         contextMenu.add(newDebitAccount);
         contextMenu.add(newSavingsAccount);
+        contextMenu.add(deleteAccount);
         accountTable.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {

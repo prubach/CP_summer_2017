@@ -34,6 +34,10 @@ public class AccountsTableDataModel extends DefaultTableModel {
         fireTableDataChanged();
     }
 
+    public void removeRow(int rowIndex) {
+        dataVector.remove(rowIndex);
+        fireTableDataChanged();
+    }
 
     @Override
     public Class getColumnClass(int colIndex) {

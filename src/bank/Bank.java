@@ -42,6 +42,10 @@ public class Bank {
         return acc;
     }
 
+    public void deleteAccount(Account acc) {
+        accountList.remove(acc);
+    }
+
     public void transfer(Long accIdFrom,
                          Long accIdTo, Double amount)
             throws BankException {
